@@ -7,13 +7,28 @@ android {
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        官方 { dimension "default" }
+
+    }
+    signingConfigs {
+        release {
+            keyAlias 'JenkinsTest'
+            keyPassword 'android'
+            storeFile file('../JenkinsTest')
+            storePassword 'android'
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
